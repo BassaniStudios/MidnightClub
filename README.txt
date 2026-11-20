@@ -1,25 +1,37 @@
-MIDNIGHTCLUB WEBSITE — STARTER PACKAGE
+MIDNIGHTCLUB WEBSITE — UPDATED BUILD
 
-Files:
-- index.html: homepage with previews of all six sections
-- legacy-meets.html
-- fivem-meets.html
-- collab-crews.html
-- hosts.html
-- discord.html
+Pages:
+- index.html          Homepage
+- legacy-meets.html   GTA Online Legacy meets
+- fivem-meets.html    Fenrir Yakuza FiveM server
+- collab-crews.html   Homebound Family & collab crews
+- hosts.html          Bassani_ & BLACKGHOSTz4
+- gallery.html        Photo gallery (Legacy / FiveM tabs)
+- rules.html          Community rules
+- discord.html        Discord hub (https://discord.gg/Cdg4b4yw4P)
 - content-creators.html
+
+Assets:
 - assets/style.css
 - assets/main.js
 
+FEATURES ADDED
+- Wallpaper principal: Encontro Neon Midnight Club (ImageKit)
+- Discord link real em todos os CTAs
+- FiveM: conteúdo do Fenrir Yakuza (CFX: cfx.re/join/glm78x)
+- Collab Crews: Homebound Family
+- Hosts: apenas Bassani_ e BLACKGHOSTz4 com bios e fotos
+- Gallery: abas Legacy / FiveM (FiveM já com fotos do Fenrir)
+- Rules: página de regras da comunidade
+- Music player flutuante (pronto para receber tracks)
+
 HOW TO USE
-1. Extract the ZIP.
-2. Open index.html in a browser to preview locally.
-3. Replace the placeholder Discord link in discord.html.
-4. Replace sample host cards and crew directory placeholder with real information.
-5. Upload the folder contents to GitHub Pages (or another static host).
+1. Open index.html in a browser.
+2. To add music: edit assets/main.js and fill the TRACKS array:
+   { title: "Nome", artist: "Artista", src: "assets/music/arquivo.mp3" }
+3. Upload the folder to GitHub Pages or any static host.
 
 NOTES
-- All navigation links are relative and work as a multi-page static site.
-- Responsive layout for desktop, tablet and mobile.
-- Google Fonts and Unsplash images require an internet connection.
-- This is a front-end foundation; it does not include a database, login, CMS or live event backend.
+- Responsive (desktop / tablet / mobile)
+- Google Fonts + external images need internet
+- No backend / CMS / login
