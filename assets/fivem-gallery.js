@@ -1,5 +1,6 @@
 /* MIDNIGHTCLUB — FiveM photo album
-   Discovers both .jpg and .png variants, including repeated numbers. */
+   Uses the same proven ImageKit folder, filenames and JPG/PNG checks
+   as the working "Recent FiveM Meets" gallery. */
 (() => {
   const grid = document.getElementById('fivem-album-grid');
   const status = document.getElementById('fivem-gallery-status');
@@ -7,11 +8,10 @@
   const dialog = document.getElementById('gallery-lightbox');
   if (!grid || !dialog) return;
 
+  // Keep this URL and filename pattern identical to the working reference gallery.
   const ROOT = 'https://ik.imagekit.io/bassanistudio/BOVARY%20WEBSITE/';
-  const MAX_INDEX = 2000;
-  const MIN_SCAN = 330;
-  const EMPTY_TAIL = 45;
-  const BATCH_SIZE = 8;
+  const MAX_INDEX = 334;
+  const VARIANTS = ['jpg', 'png'];
   const photos = [];
   const filmstrip = document.getElementById('lightbox-filmstrip');
   const mainImage = dialog.querySelector('.lightbox-image');
@@ -23,71 +23,84 @@
   let activeIndex = 0;
   let lastFocus = null;
 
-  const urlFor = (number, ext) => `${ROOT}homebound%20%28${number}%29.${ext}`;
-  const probe = (number, ext) => new Promise(resolve => {
-    const image = new Image();
-    let settled = false;
-    const finish = ok => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve(ok ? { number, ext, url: urlFor(number, ext) } : null);
-    };
-    const timer = setTimeout(() => finish(false), 12000);
-    image.onload = () => finish(image.naturalWidth > 0);
-    image.onerror = () => finish(false);
-    image.src = urlFor(number, ext);
-  });
+  // Deliberately retain literal parentheses, matching the working gallery's URL format.
+  const urlFor = (number, ext) => `${ROOT}homebound%20(${number}).${ext}`;
+
+  function updateCount(done = false) {
+    if (count) count.textContent = done
+      ? `${photos.length} PHOTOS`
+      : `${photos.length} PHOTOS FOUND`;
+  }
 
   function renderPhoto(photo, index) {
     const card = document.createElement('div');
     card.className = 'gallery-item fivem-photo-card';
+
     const trigger = document.createElement('button');
     trigger.type = 'button';
     trigger.className = 'lightbox-trigger fivem-photo-trigger';
-    trigger.setAttribute('aria-label', `Open FiveM meet photo ${index + 1}`);
+    trigger.setAttribute('aria-label', `Open FiveM meet photo ${photo.number} (${photo.ext.toUpperCase()})`);
+
     const img = document.createElement('img');
-    img.src = `${photo.url}?tr=w-700,f-auto,q-78`;
+    img.src = `${photo.url}?tr=w-900,q-80`;
     img.alt = `FiveM meet photo ${photo.number} (${photo.ext.toUpperCase()})`;
     img.loading = 'lazy';
     img.decoding = 'async';
+
     const zoom = document.createElement('span');
     zoom.className = 'gallery-zoom';
     zoom.setAttribute('aria-hidden', 'true');
     zoom.textContent = '＋';
+
     trigger.append(img, zoom);
     trigger.addEventListener('click', () => open(index, trigger));
     card.appendChild(trigger);
     grid.appendChild(card);
   }
 
-  function updateCount(done = false) {
-    count.textContent = done ? `${photos.length} PHOTOS` : `${photos.length} PHOTOS FOUND`;
+  function probe(number, ext) {
+    return new Promise(resolve => {
+      const image = new Image();
+      let settled = false;
+      const finish = ok => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(ok && image.naturalWidth > 0
+          ? { number, ext, url: urlFor(number, ext) }
+          : null);
+      };
+      const timer = setTimeout(() => finish(false), 15000);
+      image.onload = () => finish(true);
+      image.onerror = () => finish(false);
+      image.src = urlFor(number, ext);
+    });
   }
 
   async function discover() {
-    let number = 1;
-    let emptyTail = 0;
-    while (number <= MAX_INDEX && (number <= MIN_SCAN || emptyTail < EMPTY_TAIL)) {
-      const batch = [];
-      for (let i = 0; i < BATCH_SIZE && number <= MAX_INDEX; i++, number++) batch.push(number);
-      const results = await Promise.all(batch.map(async n => {
-        const variants = await Promise.all([probe(n, 'jpg'), probe(n, 'png')]);
-        return variants.filter(Boolean);
-      }));
-      let foundInBatch = 0;
-      results.forEach(found => {
-        found.forEach(photo => {
-          photos.push(photo);
-          renderPhoto(photo, photos.length - 1);
-          foundInBatch++;
-        });
+    if (status) {
+      status.classList.remove('is-complete');
+      status.innerHTML = '<span class="album-spinner" aria-hidden="true"></span><span>Loading the FiveM photo album…</span>';
+    }
+
+    // Match the working reference: check both JPG and PNG for every numbered file.
+    const checks = [];
+    for (let number = 1; number <= MAX_INDEX; number++) {
+      for (const ext of VARIANTS) checks.push([number, ext]);
+    }
+
+    const BATCH_SIZE = 24;
+    for (let offset = 0; offset < checks.length; offset += BATCH_SIZE) {
+      const batch = checks.slice(offset, offset + BATCH_SIZE);
+      const found = await Promise.all(batch.map(([number, ext]) => probe(number, ext)));
+      found.filter(Boolean).forEach(photo => {
+        const index = photos.push(photo) - 1;
+        renderPhoto(photo, index);
       });
-      emptyTail = foundInBatch ? 0 : emptyTail + batch.length;
       updateCount();
       if (status) {
-        status.querySelector('span:last-child').textContent =
-          `Scanning the album… ${Math.min(number - 1, MAX_INDEX)} file numbers checked`;
+        const checked = Math.min(offset + batch.length, checks.length);
+        status.innerHTML = `<span class="album-spinner" aria-hidden="true"></span><span>Finding photos… ${checked} of ${checks.length} image files checked</span>`;
       }
     }
 
@@ -96,7 +109,7 @@
       status.classList.add('is-complete');
       status.innerHTML = photos.length
         ? `<span class="album-check" aria-hidden="true">✓</span><span>Album ready · ${photos.length} photos available</span>`
-        : '<span>No photos could be found. Please check the ImageKit album access and file names.</span>';
+        : '<span>No photos could be loaded. Please check the ImageKit folder access and file names.</span>';
     }
   }
 
