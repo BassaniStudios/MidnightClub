@@ -2,7 +2,7 @@ MIDNIGHTCLUB 2.0 — UPDATE NOTES
 
 Included improvements:
 - Fullscreen gallery lightbox with previous/next, keyboard controls, Escape and focus restoration.
-- Event boards on Legacy Meets and FiveM Meets with Upcoming / Past / All filters. No dates or events were invented; the board displays a clear empty state until you publish announcements.
+- Legacy and FiveM event boards are now completed-event archives only, with no upcoming-event sections or filters. Empty states are shown until completed events are added.
 - Subtle scroll reveal animations with reduced-motion support.
 - Mobile refinements for gallery, event filters and lightbox.
 - Open Graph and Twitter metadata, robots directives and skip-to-content navigation.

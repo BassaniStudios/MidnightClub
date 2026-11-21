@@ -15,23 +15,23 @@ Assets:
 - assets/style.css
 - assets/main.js
 
-FEATURES ADDED
-- Wallpaper principal: Encontro Neon Midnight Club (ImageKit)
-- Discord link real em todos os CTAs
-- FiveM: conteúdo do Fenrir Yakuza (CFX: cfx.re/join/glm78x)
+FEATURES
+- Main wallpaper: Midnight Club Neon Meet (ImageKit)
+- Working Discord link on all calls to action
+- FiveM: Fenrir Yakuza content (CFX: cfx.re/join/glm78x)
 - Collab Crews: Homebound Family
-- Hosts: apenas Bassani_ e BLACKGHOSTz4 com bios e fotos
-- Gallery: abas Legacy / FiveM (FiveM já com fotos do Fenrir)
-- Rules: página de regras da comunidade
-- Music player flutuante (pronto para receber tracks)
+- Hosts: only Bassani_ and BLACKGHOSTz4, with bios and photos
+- Gallery: Legacy / FiveM tabs (FiveM already includes Fenrir photos)
+- Rules: community rules page
+- Floating music player (ready for tracks)
 
 HOW TO USE
 1. Open index.html in a browser.
-2. To add music: edit assets/main.js and fill the TRACKS array:
-   { title: "Nome", artist: "Artista", src: "assets/music/arquivo.mp3" }
-3. Upload the folder to GitHub Pages or any static host.
+2. To add music, edit assets/main.js and fill the TRACKS array:
+   { title: "Track Name", artist: "Artist", src: "assets/music/filename.mp3" }
+3. Upload the folder to GitHub Pages or any static hosting provider.
 
 NOTES
-- Responsive (desktop / tablet / mobile)
-- Google Fonts + external images need internet
-- No backend / CMS / login
+- Responsive layout (desktop / tablet / mobile)
+- Google Fonts and external images require an internet connection
+- No backend, CMS, or login system
