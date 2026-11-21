@@ -62,8 +62,8 @@
 <section class="section">
   <div class="gallery-toolbar"><p class="gallery-hint">Select any photo to view it in full size.</p><button class="btn secondary share-page" type="button" data-share-page>Share gallery ↗</button></div>
   <div class="gallery-tabs" role="tablist" aria-label="Gallery platform">
-    <button class="gallery-tab active" type="button" role="tab" aria-selected="true" id="tab-legacy" data-tab="legacy">LEGACY</button>
-    <button class="gallery-tab" type="button" role="tab" aria-selected="false" id="tab-fivem" data-tab="fivem">FIVEM</button>
+    <button class="gallery-tab active" type="button" role="tab" aria-selected="true" id="tab-legacy" data-tab="legacy">LEGACY MEETS</button>
+    <button class="gallery-tab" type="button" role="tab" aria-selected="false" id="tab-fivem" data-tab="fivem">FIVEM MEETS</button>
   </div>
 
   <div id="gallery-legacy" class="gallery-section active" role="tabpanel" aria-labelledby="tab-legacy">
@@ -99,29 +99,16 @@
     <div class="section-head" style="margin-bottom:20px">
       <div>
         <div class="kicker">FiveM · Fenrir Yakuza</div>
-        <h2 style="font-size:32px">FiveM Sessions</h2>
+        <h2 style="font-size:32px">FiveM Meets</h2>
+        <p class="gallery-intro">A collection of moments, builds and memories from our FiveM sessions.</p>
       </div>
+      <div class="album-count" id="fivem-photo-count" aria-live="polite">Discovering photos…</div>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <a class="lightbox-trigger" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/14.png" data-lightbox data-full="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/14.png" aria-label="View photo: Fenrir session"><img src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/14.png?tr=w-900,f-auto,q-80" alt="Fenrir session" loading="lazy" decoding="async"><span class="gallery-zoom" aria-hidden="true">＋</span></a>
-      </div>
-      <div class="gallery-item">
-        <a class="lightbox-trigger" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/51.png" data-lightbox data-full="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/51.png" aria-label="View photo: Fenrir session"><img src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/51.png?tr=w-900,f-auto,q-80" alt="Fenrir session" loading="lazy" decoding="async"><span class="gallery-zoom" aria-hidden="true">＋</span></a>
-      </div>
-      <div class="gallery-item">
-        <a class="lightbox-trigger" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/52.png" data-lightbox data-full="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/52.png" aria-label="View photo: Fenrir session"><img src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/52.png?tr=w-900,f-auto,q-80" alt="Fenrir session" loading="lazy" decoding="async"><span class="gallery-zoom" aria-hidden="true">＋</span></a>
-      </div>
-      <div class="gallery-item">
-        <a class="lightbox-trigger" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/53.png" data-lightbox data-full="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/53.png" aria-label="View photo: Fenrir session"><img src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/53.png?tr=w-900,f-auto,q-80" alt="Fenrir session" loading="lazy" decoding="async"><span class="gallery-zoom" aria-hidden="true">＋</span></a>
-      </div>
-      <div class="gallery-item">
-        <a class="lightbox-trigger" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/54.png" data-lightbox data-full="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/54.png" aria-label="View photo: Fenrir session"><img src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/54.png?tr=w-900,f-auto,q-80" alt="Fenrir session" loading="lazy" decoding="async"><span class="gallery-zoom" aria-hidden="true">＋</span></a>
-      </div>
-      <div class="gallery-item">
-        <a class="lightbox-trigger" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/55.png" data-lightbox data-full="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/55.png" aria-label="View photo: Fenrir session"><img src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/fenrir%20yakuza/55.png?tr=w-900,f-auto,q-80" alt="Fenrir session" loading="lazy" decoding="async"><span class="gallery-zoom" aria-hidden="true">＋</span></a>
-      </div>
+    <div class="album-progress" id="fivem-gallery-status" role="status">
+      <span class="album-spinner" aria-hidden="true"></span>
+      <span>Loading the FiveM photo album…</span>
     </div>
+    <div class="gallery-grid fivem-album-grid" id="fivem-album-grid" aria-label="FiveM meet photos"></div>
   </div>
 </section>
 
@@ -143,6 +130,7 @@
   <figure class="lightbox-figure"><img class="lightbox-image" src="" alt=""><figcaption class="lightbox-caption"></figcaption></figure>
   <button class="lightbox-nav lightbox-next" type="button" aria-label="Next photo">›</button>
   <span class="lightbox-counter" aria-live="polite"></span>
+  <div class="lightbox-filmstrip" id="lightbox-filmstrip" aria-label="Album photo previews"></div>
 </div>
 <footer class="footer">
   <div class="footer-inner">
@@ -183,5 +171,6 @@
 </div>
 <audio id="audio-el" preload="metadata" aria-label="Midnight Radio audio"></audio>
 <script src="assets/main.js"></script>
+<script src="assets/fivem-gallery.js"></script>
 </body>
 </html>
