@@ -787,25 +787,74 @@ img { max-width: 100%; display: block; }
 
 /* ========== PAGE HERO ========== */
 .page-hero {
-  padding: 90px 40px 60px;
+  padding: 110px 40px 80px;
+  min-height: 52vh;
   text-align: left;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
+/* Base atmospheric glow */
 .page-hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse at 80% 20%, rgba(255, 59, 31, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 10% 80%, rgba(255, 106, 0, 0.08) 0%, transparent 45%);
+    radial-gradient(ellipse at 80% 20%, rgba(255, 59, 31, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 80%, rgba(255, 106, 0, 0.1) 0%, transparent 45%);
   pointer-events: none;
+}
+/* Semi-transparent wallpaper layer (activated per page) */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: cover;
+  opacity: 0.28;
+  pointer-events: none;
+  filter: saturate(1.05) contrast(1.05);
+}
+/* Dark vignette so text stays readable over the wallpaper */
+.page-hero .page-hero-inner::before {
+  content: '';
+  position: absolute;
+  inset: -40px -20px;
+  z-index: -1;
+  background: linear-gradient(90deg,
+    rgba(8, 4, 12, 0.82) 0%,
+    rgba(8, 4, 12, 0.55) 45%,
+    rgba(8, 4, 12, 0.15) 100%);
+  pointer-events: none;
+}
+/* Page-specific wallpapers */
+.page-hero--legacy::after {
+  background-image: url('https://ik.imagekit.io/MidnightClub/WEBSITE%20MIDNIGHT/website%20images/file_00000000ad4882108c9d90495cad888b.png?updatedAt=1795227710696');
+  background-position: center center;
+  background-size: contain;
+  opacity: 0.22;
+  filter: drop-shadow(0 0 40px rgba(255, 59, 31, 0.25));
+}
+.page-hero--fivem::after {
+  background-image: url('https://ik.imagekit.io/MidnightClub/WEBSITE%20MIDNIGHT/website%20images/Gemini_Generated_Image_rfahvvrfahvvrfah-removebg-preview.png?updatedAt=1795227710135');
+  background-position: right center;
+  background-size: contain;
+  opacity: 0.32;
+}
+.page-hero--collab::after {
+  background-image: url('https://ik.imagekit.io/MidnightClub/WEBSITE%20MIDNIGHT/website%20images/33be66992568bf4c0d0fac9c858f9d1c04fb1dc2_512-removebg-preview.png?updatedAt=1795227710072');
+  background-position: right center;
+  background-size: contain;
+  opacity: 0.32;
 }
 .page-hero-inner {
   max-width: var(--max);
   margin: auto;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 .page-hero h1 {
   font-family: var(--font-display);
@@ -818,12 +867,29 @@ img { max-width: 100%; display: block; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 2px 16px rgba(0,0,0,0.55));
 }
 .page-hero p {
   max-width: 520px;
-  color: var(--muted);
+  color: #e0c8d0;
   font-size: 16px;
   margin: 0;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.65);
+}
+@media (max-width: 900px) {
+  .page-hero {
+    min-height: 42vh;
+    padding: 96px 24px 64px;
+  }
+  .page-hero::after {
+    background-position: center center;
+    opacity: 0.18;
+  }
+  .page-hero--legacy::after,
+  .page-hero--fivem::after,
+  .page-hero--collab::after {
+    opacity: 0.16;
+  }
 }
 
 /* ========== HOSTS ========== */
