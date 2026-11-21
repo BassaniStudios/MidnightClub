@@ -56,9 +56,16 @@ document.querySelectorAll('.gallery-tab').forEach(tab => {
 
 /* ========== MUSIC PLAYER ========== */
 const TRACKS = [
-  // Tracks will be added later by the user
-  // Example format:
-  // { title: "Night Drive", artist: "MidnightClub", src: "assets/music/track1.mp3" }
+  {
+    title: "Se Me Nota (Agarrame)",
+    artist: "Chimbala x Omega",
+    src: "https://ik.imagekit.io/MidnightClub/WEBSITE%20MIDNIGHT/musics/Chimbala%20x%20Omega%20-%20Se%20Me%20Nota%20-%20(Agarrame)%20-%20(Video%20Oficial)%20-%20ChimbalaHD.mp3"
+  },
+  {
+    title: "I'm About",
+    artist: "Chemical Surf feat. Malker",
+    src: "https://ik.imagekit.io/MidnightClub/WEBSITE%20MIDNIGHT/musics/Chemical%20Surf%20feat.%20Malker%20-%20I'm%20About%20-%20Chemical%20Surf.mp3?updatedAt=1795139575383"
+  }
 ];
 
 const playerEl = document.getElementById('music-player');
