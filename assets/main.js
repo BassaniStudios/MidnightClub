@@ -1,5 +1,35 @@
 /* MidnightClub — main.js */
 
+// ========== BOOT LOADER ==========
+(function () {
+  const loader = document.getElementById('boot-loader');
+  if (!loader) return;
+
+  // Hide loader after progress animation + small buffer
+  const hide = () => {
+    loader.classList.add('hidden');
+    setTimeout(() => {
+      if (loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 900);
+  };
+
+  // Wait for window load or max 2.2s
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    // Let the progress bar finish its animation
+    setTimeout(hide, 400);
+  };
+
+  if (document.readyState === 'complete') {
+    finish();
+  } else {
+    window.addEventListener('load', finish);
+    setTimeout(finish, 2200); // safety fallback
+  }
+})();
+
 // Mobile menu
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
