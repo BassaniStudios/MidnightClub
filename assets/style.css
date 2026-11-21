@@ -1476,3 +1476,35 @@ img { height: auto; }
 .album-link-panel h3{margin:4px 0;font-family:var(--font-display);font-size:clamp(18px,2.5vw,25px)}
 .album-link-panel p{margin:0;color:var(--muted)}
 @media(max-width:640px){.album-link-panel{align-items:flex-start;flex-direction:column;padding:22px}}
+
+
+/* ========== UPDATED RULES PAGE: DISCORD + GTA MEETS ========== */
+.rules-page-section { padding-top: 64px; padding-bottom: 64px; }
+.rules-intro { max-width: var(--max); margin: 0 auto 28px; }
+.rules-intro .eyebrow { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.rules-intro h2 { margin: 8px 0 6px; font-size: clamp(28px, 4vw, 42px); }
+.rules-intro > p { margin: 0; color: var(--muted); font-size: 15px; }
+.rules-page-section .rules-list { margin-bottom: 28px; }
+.rules-page-section .rule-item { max-width: var(--max); }
+.discipline-panel { max-width: var(--max); margin: 30px auto 0; padding: clamp(22px, 4vw, 34px); border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, rgba(28,18,36,.96), rgba(10,10,16,.98)); }
+.discipline-heading { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+.discipline-icon { display: grid; place-items: center; flex: 0 0 44px; height: 44px; border: 1px solid var(--line); border-radius: 10px; color: var(--cyan); font-size: 24px; }
+.discipline-heading .eyebrow { color: var(--cyan); font-size: 10px; font-weight: 800; letter-spacing: 1.8px; }
+.discipline-heading h3 { margin: 4px 0 5px; font-size: 20px; }
+.discipline-heading p { margin: 0; color: var(--muted); font-size: 14px; }
+.discipline-steps { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; }
+.discipline-steps > div { min-height: 112px; padding: 15px; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.025); }
+.discipline-steps > div > span { color: var(--cyan); font-family: var(--font-display); font-weight: 800; font-size: 18px; }
+.discipline-steps p { margin: 9px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.discipline-steps strong { display: block; color: var(--text, #fff); margin-bottom: 3px; }
+.meet-discipline-steps { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.discipline-notice { margin-top: 14px; padding: 16px 18px; border-left: 3px solid var(--cyan); border-radius: 4px 8px 8px 4px; background: rgba(255,59,31,.07); }
+.discipline-notice strong { display: block; margin-bottom: 5px; color: #fff; font-size: 13px; }
+.discipline-notice p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.rules-final-notice { max-width: var(--max); margin: 18px auto 0; padding: 22px 24px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.025); }
+.rules-final-notice .eyebrow { color: var(--cyan); font-size: 10px; font-weight: 800; letter-spacing: 1.8px; }
+.rules-final-notice p { margin: 8px 0; color: var(--muted); font-size: 14px; }
+.rules-final-notice strong { color: #fff; font-size: 13px; letter-spacing: .2px; }
+.car-meet-rules-section { padding-top: 24px; border-top: 1px solid var(--line); }
+@media (max-width: 850px) { .discipline-steps { grid-template-columns: repeat(2,minmax(0,1fr)); } .meet-discipline-steps { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 520px) { .rules-page-section { padding-top: 42px; padding-bottom: 42px; } .discipline-panel { padding: 20px 16px; } .discipline-steps, .meet-discipline-steps { grid-template-columns: 1fr; } .discipline-steps > div { min-height: auto; } .discipline-heading { gap: 11px; } .discipline-icon { flex-basis: 38px; height: 38px; } }
