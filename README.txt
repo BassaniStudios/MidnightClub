@@ -4,7 +4,9 @@ Pages:
 - index.html          Homepage
 - legacy-meets.html   GTA Online Legacy meets
 - fivem-meets.html    Fenrir Yakuza FiveM server
-- collab-crews.html   Homebound Family & collab crews
+- collab-crews.html   Collab crews listing (Homebound Family + Bovary Club Society)
+- crew-homebound.html Dedicated page for Homebound Family
+- crew-bovary.html    Dedicated page for Bovary Club Society
 - hosts.html          Bassani_ & BLACKGHOSTz4
 - gallery.html        Photo gallery (Legacy / FiveM tabs)
 - rules.html          Community rules

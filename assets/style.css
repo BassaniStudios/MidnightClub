@@ -897,7 +897,7 @@ img { max-width: 100%; display: block; }
   max-width: var(--max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 28px;
 }
 .host-card {
@@ -1641,3 +1641,187 @@ img { height: auto; }
 .fivem-host-card { display:flex; flex-direction:column; align-items:flex-start; min-height:190px; }
 .fivem-host-avatar { display:block; width:76px; height:76px; margin-bottom:14px; border-radius:50%; object-fit:cover; object-position:center; border:2px solid var(--pink); background:rgba(255,255,255,.06); box-shadow:0 0 16px rgba(255,106,0,.14); }
 .fivem-host-card strong { margin-bottom:5px; }
+
+/* ========== COLLAB CREWS LISTING ========== */
+.crews-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 48px 36px;
+  padding: 0 20px 20px;
+}
+.crew-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  group: true;
+}
+.crew-card-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 340px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(28, 18, 36, 0.95), rgba(12, 8, 18, 0.98));
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+.crew-card:hover .crew-card-embed {
+  border-color: rgba(255, 106, 0, 0.55);
+  box-shadow: 0 0 40px rgba(255, 59, 31, 0.22), 0 25px 60px rgba(0,0,0,0.5);
+  transform: translateY(-6px);
+}
+.crew-card-embed img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.45));
+  transition: transform 0.4s ease;
+}
+.crew-card:hover .crew-card-embed img {
+  transform: scale(1.06);
+}
+.crew-card-name {
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.8vw, 28px);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 0 10px rgba(255, 59, 31, 0.85),
+    0 0 24px rgba(255, 106, 0, 0.55),
+    0 0 48px rgba(255, 59, 31, 0.3);
+  transition: text-shadow 0.3s;
+}
+.crew-card:hover .crew-card-name {
+  text-shadow:
+    0 0 14px rgba(255, 80, 40, 1),
+    0 0 32px rgba(255, 106, 0, 0.75),
+    0 0 60px rgba(255, 59, 31, 0.45);
+}
+.crew-card-tag {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.crew-card-cta {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--orange, #ff6a00);
+  opacity: 0.85;
+  transition: opacity 0.25s;
+}
+.crew-card:hover .crew-card-cta {
+  opacity: 1;
+}
+
+/* Crew detail page helpers */
+.crew-detail-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.crew-detail-logo-wrap img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(255, 59, 31, 0.35));
+}
+.crew-notice-box {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(28,18,36,.92), rgba(12,8,16,.96));
+}
+.crew-notice-icon { font-size: 22px; flex-shrink: 0; }
+.crew-notice-title { margin: 0 0 6px; font-weight: 700; color: #fff; font-size: 15px; }
+.crew-notice-text { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.crew-hosts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.crew-host-card {
+  background: linear-gradient(160deg, rgba(28,18,36,.95), rgba(12,8,18,.98));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px 18px;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.crew-host-card:hover {
+  border-color: rgba(255,106,0,.45);
+  box-shadow: 0 0 28px rgba(255,59,31,.12);
+}
+.crew-host-card img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--pink, #ff3b1f);
+  box-shadow: 0 0 18px rgba(255,106,0,.2);
+  margin-bottom: 14px;
+}
+.crew-host-card h4 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.5px;
+}
+.crew-host-card .rank {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.crew-host-card .btn {
+  margin-top: 8px;
+  font-size: 12px;
+  padding: 8px 14px;
+}
+.crew-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.crew-tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  background: rgba(255,255,255,.03);
+}
+@media (max-width: 640px) {
+  .crews-grid { gap: 36px 20px; }
+  .crew-card-embed { max-width: 280px; }
+  .crew-notice-box { flex-direction: column; gap: 10px; }
+}
